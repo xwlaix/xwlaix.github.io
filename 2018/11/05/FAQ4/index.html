@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="1.get和post的区别 get向指定的资源请求数据,请求的数据会附在URL之后,就是把数据放置在请求行（request line）中），以?分割URL和传输数据，多个参数用&amp;amp;连接； post向指定的资源提交要被处理的数据get方法，查询请求是在url中显示的，有长度限制，get方法是安全幂等的。而post方法请求是封装在http消息包体中     &amp;amp; get post">
+<meta name="keywords" content="面试题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试题">
+<meta property="og:url" content="http://yoursite.com/2018/11/05/FAQ4/index.html">
+<meta property="og:site_name" content="轻触流年的博客">
+<meta property="og:description" content="1.get和post的区别 get向指定的资源请求数据,请求的数据会附在URL之后,就是把数据放置在请求行（request line）中），以?分割URL和传输数据，多个参数用&amp;amp;连接； post向指定的资源提交要被处理的数据get方法，查询请求是在url中显示的，有长度限制，get方法是安全幂等的。而post方法请求是封装在http消息包体中     &amp;amp; get post">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-11T01:50:26.859Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面试题">
+<meta name="twitter:description" content="1.get和post的区别 get向指定的资源请求数据,请求的数据会附在URL之后,就是把数据放置在请求行（request line）中），以?分割URL和传输数据，多个参数用&amp;amp;连接； post向指定的资源提交要被处理的数据get方法，查询请求是在url中显示的，有长度限制，get方法是安全幂等的。而post方法请求是封装在http消息包体中     &amp;amp; get post">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/05/FAQ4/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>面试题 | 轻触流年的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">轻触流年的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">吾心所向，前端之巅。</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/05/FAQ4/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="轻触流年">
+      <meta itemprop="description" content="吾心所向，前端之巅。">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="轻触流年的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">面试题
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-05 21:22:25" itemprop="dateCreated datePublished" datetime="2018-11-05T21:22:25+08:00">2018-11-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 09:50:26" itemprop="dateModified" datetime="2019-03-11T09:50:26+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/前端面试题/" itemprop="url" rel="index"><span itemprop="name">前端面试题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-get和post的区别"><a href="#1-get和post的区别" class="headerlink" title="1.get和post的区别"></a>1.get和post的区别</h2><ul>
+<li>get向指定的资源请求数据,请求的数据会附在URL之后,就是把数据放置在请求行（request line）中），以?分割URL和传输数据，多个参数用&amp;连接；</li>
+<li>post向指定的资源提交要被处理的数据<br>get方法，查询请求是在url中显示的，有长度限制，get方法是安全幂等的。而post方法请求是封装在http消息包体中</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>&amp;</th>
+<th>get</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>后退/刷新</td>
+<td>无害</td>
+<td>请求重新提交</td>
+</tr>
+<tr>
+<td>书签</td>
+<td>可做书签</td>
+<td>不可做</td>
+</tr>
+<tr>
+<td>缓存</td>
+<td>可被缓存</td>
+<td>不能被缓存</td>
+</tr>
+<tr>
+<td>历史</td>
+<td>保留在浏览器记录里</td>
+<td>不保留</td>
+</tr>
+<tr>
+<td>对数据长度限制</td>
+<td>限制（2048字符）</td>
+<td>不限制</td>
+</tr>
+<tr>
+<td>安全性</td>
+<td>url中暴露数据</td>
+<td>相对安全</td>
+</tr>
+<tr>
+<td>可见性</td>
+<td>url中可见</td>
+<td>不可见</td>
+</tr>
+</tbody>
+</table>
+<p> 总结：<br>   ①. 对于get来说，是向服务器端请求数据，其请求在url中可见，其长度有限制（2048字符）个体方法是安全幂等，这里的安全是指用于获取信息而非修改信息，幂等是指每次请求得到的结果都一样。<br>   ②. 对于post来说，是向服务器端提交数据，每次刷新或者后退都会重新提交，post请求的数据封装在http请求的首部里。</p>
+<h2 id="2-HTTP-状态码"><a href="#2-HTTP-状态码" class="headerlink" title="2. HTTP 状态码"></a>2. HTTP 状态码</h2><ul>
+<li><code>1XX</code>代表请求已经被接收；</li>
+<li><code>2xx</code>代表请求已成功被服务器接收、理解、并接受。常用的200表示请求已成功，请求所希望的响应头或数据体将随此响应返回；</li>
+<li><code>3xx</code>代表重定向。</li>
+<li><code>4xx</code>代表客户端错误。404表示网页不存在。</li>
+<li><code>5xx</code>代表服务器错误。500表示服务器内部错误，503表示服务器暂时不可用</li>
+</ul>
+<h2 id="3-前端MVC框架"><a href="#3-前端MVC框架" class="headerlink" title="3.前端MVC框架"></a>3.前端MVC框架</h2><p> MVC（模型-视图-控制器）<br> Model(模型)主要与业务数据有关。<br> View(视图)是关于构件和维护一个DOM元素。应用程序数据的可视化表示。<br> Controller(控制器）用户更新视图，controller更新model.(网上没有这类型的详细文章，这里可以好好写一写，画画图，各个框架MVC之间的异同。)</p>
+<p> 如<a href="http://www.zhihu.com/question/20135390" target="_blank" rel="noopener">知乎</a>，把数据请求和数据操作放在model中，对视图的操作和改变放在view中，事件绑定放在controller中。</p>
+<h2 id="4-闭包"><a href="#4-闭包" class="headerlink" title="4.闭包"></a>4.闭包</h2><p>   请见<a href="https://github.com/paddingme/Learning-JavaScript/issues/29" target="_blank" rel="noopener">隔壁</a>。</p>
+<h2 id="5-DOCTYPE的作用？严格模式与混杂模式如何区分？它们有什么意义？"><a href="#5-DOCTYPE的作用？严格模式与混杂模式如何区分？它们有什么意义？" class="headerlink" title="5.DOCTYPE的作用？严格模式与混杂模式如何区分？它们有什么意义？"></a>5.DOCTYPE的作用？严格模式与混杂模式如何区分？它们有什么意义？</h2><p> DOCTYPE声明位于HTML文档顶端，告诉浏览器应该用什么文档类型规范来解析这个文档；<br> 严格模式的排版和JS运作模式是以该浏览器支持的最高标准运行；而混杂模式中，页面以较宽松的向后兼容的模式显示。模拟老式浏览器的行为以防止站点无法工作。<br>；DOCTYPE不存在或者格式不正确，则浏览器以混杂模式呈现文档。</p>
+<h2 id="6-行内元素有哪些？块级元素有哪些？空（void-元素有哪些？"><a href="#6-行内元素有哪些？块级元素有哪些？空（void-元素有哪些？" class="headerlink" title="6.行内元素有哪些？块级元素有哪些？空（void  )元素有哪些？"></a>6.行内元素有哪些？块级元素有哪些？空（void  )元素有哪些？</h2><h2 id="7-link和-import的区别"><a href="#7-link和-import的区别" class="headerlink" title="7.link和@import的区别"></a>7.link和@import的区别</h2><h2 id="8-浏览器的内核分别是什么"><a href="#8-浏览器的内核分别是什么" class="headerlink" title="8.浏览器的内核分别是什么"></a>8.浏览器的内核分别是什么</h2><h2 id="9-常见兼容性问题"><a href="#9-常见兼容性问题" class="headerlink" title="9.常见兼容性问题"></a>9.常见兼容性问题</h2><ul>
+<li>浏览器的<code>padding</code>和<code>marigin</code>不同。</li>
+</ul>
+<h2 id="10-语义化的理解"><a href="#10-语义化的理解" class="headerlink" title="10.语义化的理解"></a>10.语义化的理解</h2><h2 id="11-HTML5的离线存储"><a href="#11-HTML5的离线存储" class="headerlink" title="11.HTML5的离线存储"></a>11.HTML5的离线存储</h2><p> localStorage 长期存储数据，浏览器关闭后数据不丢失；而sessionStorage数据在浏览器关闭后自动删除。</p>
+<h2 id="12-cookie和session的区别"><a href="#12-cookie和session的区别" class="headerlink" title="12.cookie和session的区别"></a>12.cookie和session的区别</h2><p>  ① cookie数据存在客户的浏览器上，session数据存放在服务器端<br>  ② cookie不安全<br>  ③ session会在一定时间内保存在服务器端，访问增多，占用服务器性能。<br>  ④ 单个cookie保存的数据不超过4K</p>
+<h2 id="13-写-描述一段语义的html代码吧。"><a href="#13-写-描述一段语义的html代码吧。" class="headerlink" title="13.(写)描述一段语义的html代码吧。"></a>13.(写)描述一段语义的html代码吧。</h2><h2 id="14-frame有那些缺点？"><a href="#14-frame有那些缺点？" class="headerlink" title="14.frame有那些缺点？"></a>14.frame有那些缺点？</h2><h2 id="15-请描述一下-cookies，sessionStorage-和-localStorage-的区别？"><a href="#15-请描述一下-cookies，sessionStorage-和-localStorage-的区别？" class="headerlink" title="15.请描述一下 cookies，sessionStorage 和 localStorage 的区别？"></a>15.请描述一下 cookies，sessionStorage 和 localStorage 的区别？</h2><p>cookie在浏览器和服务器间来回传递。 sessionStorage和localStorage不会<br>sessionStorage和localStorage的存储空间更大；<br>sessionStorage和localStorage有更多丰富易用的接口；<br>sessionStorage和localStorage各自独立的存储空间；</p>
+<h2 id="16-介绍一下CSS的盒子模型？"><a href="#16-介绍一下CSS的盒子模型？" class="headerlink" title="16.介绍一下CSS的盒子模型？"></a>16.介绍一下CSS的盒子模型？</h2><p>  ① 有两种， IE 盒子模型、标准 W3C 盒子模型；IE的content部分包含了 border 和 padding;</p>
+<p>  ② 盒模型： 内容(content)、填充(padding)、边界(margin)、 边框(border).</p>
+<p>##17.CSS 选择符有哪些？哪些属性可以继承？优先级算法如何计算？ CSS3新增伪类有那些？##<br>!important&gt;id&gt;class&gt;tag</p>
+<h2 id="18-如何居中div？如何居中一个浮动元素？"><a href="#18-如何居中div？如何居中一个浮动元素？" class="headerlink" title="18.如何居中div？如何居中一个浮动元素？"></a>18.如何居中div？如何居中一个浮动元素？</h2><p>摘自：</p>
+<ul>
+<li><cite>markyun<cite> <a href="https://github.com/markyun/My-blog/tree/master/Front-end-Developer-Questions" target="_blank" rel="noopener">2014年最新前端开发面试题</a> 和 <a href="http://segmentfault.com/a/1190000000465431" target="_blank" rel="noopener">前端开发面试题</a></cite></cite></li>
+<li><cite>darcyclarke</cite><a href="https://github.com/darcyclarke/Front-end-Developer-Interview-Questions" target="_blank" rel="noopener">Front-end-Developer-Interview-Questions</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/面试题/" rel="tag"># 面试题</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/30/FAQ3/" rel="next" title="常见问题">
+                <i class="fa fa-chevron-left"></i> 常见问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/12/fun/" rel="prev" title="趣味问题">
+                趣味问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="轻触流年">
+            
+              <p class="site-author-name" itemprop="name">轻触流年</p>
+              <p class="site-description motion-element" itemprop="description">吾心所向，前端之巅。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/xwlaix" title="GitHub &rarr; https://github.com/xwlaix" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:way215870604@gmail.com" title="E-Mail &rarr; mailto:way215870604@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-get和post的区别"><span class="nav-number">1.</span> <span class="nav-text">1.get和post的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-HTTP-状态码"><span class="nav-number">2.</span> <span class="nav-text">2. HTTP 状态码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-前端MVC框架"><span class="nav-number">3.</span> <span class="nav-text">3.前端MVC框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-闭包"><span class="nav-number">4.</span> <span class="nav-text">4.闭包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-DOCTYPE的作用？严格模式与混杂模式如何区分？它们有什么意义？"><span class="nav-number">5.</span> <span class="nav-text">5.DOCTYPE的作用？严格模式与混杂模式如何区分？它们有什么意义？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-行内元素有哪些？块级元素有哪些？空（void-元素有哪些？"><span class="nav-number">6.</span> <span class="nav-text">6.行内元素有哪些？块级元素有哪些？空（void  )元素有哪些？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-link和-import的区别"><span class="nav-number">7.</span> <span class="nav-text">7.link和@import的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-浏览器的内核分别是什么"><span class="nav-number">8.</span> <span class="nav-text">8.浏览器的内核分别是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-常见兼容性问题"><span class="nav-number">9.</span> <span class="nav-text">9.常见兼容性问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-语义化的理解"><span class="nav-number">10.</span> <span class="nav-text">10.语义化的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-HTML5的离线存储"><span class="nav-number">11.</span> <span class="nav-text">11.HTML5的离线存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-cookie和session的区别"><span class="nav-number">12.</span> <span class="nav-text">12.cookie和session的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-写-描述一段语义的html代码吧。"><span class="nav-number">13.</span> <span class="nav-text">13.(写)描述一段语义的html代码吧。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-frame有那些缺点？"><span class="nav-number">14.</span> <span class="nav-text">14.frame有那些缺点？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-请描述一下-cookies，sessionStorage-和-localStorage-的区别？"><span class="nav-number">15.</span> <span class="nav-text">15.请描述一下 cookies，sessionStorage 和 localStorage 的区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-介绍一下CSS的盒子模型？"><span class="nav-number">16.</span> <span class="nav-text">16.介绍一下CSS的盒子模型？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18-如何居中div？如何居中一个浮动元素？"><span class="nav-number">17.</span> <span class="nav-text">18.如何居中div？如何居中一个浮动元素？</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">轻触流年</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

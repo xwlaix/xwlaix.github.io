@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="前端面试CSS 相关问题 Q：描述下 “reset” CSS 文件的作用和使用它的好处。 A：  作用以及好处：因为各个浏览器默认对CSS的渲染有差异，”reset” CSS 通过重新定义标签样式，对浏览器进行默认样式“清零”重置，样式保持一致。 不足:  css文件大小增加； 许多样式本身就需要重置，多此一举； 增加浏览器对CSS 的渲染。  可以阅读以下文章增强了解：  CSS reset的重">
+<meta name="keywords" content="CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS 相关问题">
+<meta property="og:url" content="http://yoursite.com/2018/08/19/css2/index.html">
+<meta property="og:site_name" content="轻触流年的博客">
+<meta property="og:description" content="前端面试CSS 相关问题 Q：描述下 “reset” CSS 文件的作用和使用它的好处。 A：  作用以及好处：因为各个浏览器默认对CSS的渲染有差异，”reset” CSS 通过重新定义标签样式，对浏览器进行默认样式“清零”重置，样式保持一致。 不足:  css文件大小增加； 许多样式本身就需要重置，多此一举； 增加浏览器对CSS 的渲染。  可以阅读以下文章增强了解：  CSS reset的重">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-11T01:50:26.855Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS 相关问题">
+<meta name="twitter:description" content="前端面试CSS 相关问题 Q：描述下 “reset” CSS 文件的作用和使用它的好处。 A：  作用以及好处：因为各个浏览器默认对CSS的渲染有差异，”reset” CSS 通过重新定义标签样式，对浏览器进行默认样式“清零”重置，样式保持一致。 不足:  css文件大小增加； 许多样式本身就需要重置，多此一举； 增加浏览器对CSS 的渲染。  可以阅读以下文章增强了解：  CSS reset的重">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/08/19/css2/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>CSS 相关问题 | 轻触流年的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">轻触流年的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">吾心所向，前端之巅。</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/19/css2/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="轻触流年"/>
+      <meta itemprop="description" content="吾心所向，前端之巅。"/>
+      <meta itemprop="image" content="/images/avatar.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="轻触流年的博客"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CSS 相关问题
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-19 18:18:40" itemprop="dateCreated datePublished" datetime="2018-08-19T18:18:40+08:00">2018-08-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 09:50:26" itemprop="dateModified" datetime="2019-03-11T09:50:26+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/前端面试题/" itemprop="url" rel="index"><span itemprop="name">前端面试题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前端面试CSS-相关问题"><a href="#前端面试CSS-相关问题" class="headerlink" title="前端面试CSS 相关问题"></a>前端面试CSS 相关问题</h1><ul>
+<li><p>Q：描述下 “reset” CSS 文件的作用和使用它的好处。</p>
+<p>A：</p>
+<ul>
+<li>作用以及好处：因为各个浏览器默认对CSS的渲染有差异，”reset” CSS 通过重新定义标签样式，对浏览器进行默认样式“清零”重置，样式保持一致。</li>
+<li><p>不足:</p>
+<ul>
+<li>css文件大小增加；</li>
+<li>许多样式本身就需要重置，多此一举；</li>
+<li>增加浏览器对CSS 的渲染。</li>
+</ul>
+<p>可以阅读以下文章增强了解：</p>
+</li>
+<li><a href="http://www.zhangxinxu.com/wordpress/2010/04/css-reset%E7%9A%84%E9%87%8D%E6%96%B0%E5%AE%A1%E8%A7%86-%E9%81%BF%E5%85%8D%E6%A0%B7%E5%BC%8F%E9%87%8D%E7%BD%AE/" target="_blank" rel="noopener">CSS reset的重新审视 – 避免样式重置</a></li>
+<li><a href="http://www.cnblogs.com/dolphinx/p/3509515.html" target="_blank" rel="noopener">常见标签的默认属性值及相互作用——关于CSS reset的思考</a></li>
+<li><a href="http://baike.baidu.com/view/5186496.htm" target="_blank" rel="noopener">reset.css</a></li>
+<li><a href="http://handyxuefeng.blog.163.com/blog/static/454521722013111714040259/" target="_blank" rel="noopener">前端面试问题</a></li>
+</ul>
+</li>
+<li><p>Q: 解释下浮动和它的工作原理。</p>
+<p>A: 浮动出现的最开始出现的意义是用来让文字环绕图片而已。<code>float</code>可以自动包裹元素。<code>float</code>会导致高度塌陷。<code>float</code>为什么会导致高度塌陷：元素含有浮动属性 –&gt; 破坏<code>inline box</code> –&gt; 破坏<code>line box</code>高度 –&gt; 没有高度 –&gt; 塌陷。什么时候会塌陷：当标签里面的元素只要样子没有实际高度时会塌陷。浮动会脱离文档流。产生自己的块级格式化上下文。</p>
+<p>  可以阅读以下文章增加理解：</p>
+<ul>
+<li><a href="http://www.zhangxinxu.com/wordpress/2010/01/css-float%E6%B5%AE%E5%8A%A8%E7%9A%84%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6%E3%80%81%E8%AF%A6%E8%A7%A3%E5%8F%8A%E6%8B%93%E5%B1%95%E4%B8%80/" target="_blank" rel="noopener">CSS float浮动的深入研究、详解及拓展(一)</a></li>
+<li><a href="http://www.zhangxinxu.com/wordpress/2010/01/css-float%E6%B5%AE%E5%8A%A8%E7%9A%84%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6%E3%80%81%E8%AF%A6%E8%A7%A3%E5%8F%8A%E6%8B%93%E5%B1%95%E4%BA%8C/" target="_blank" rel="noopener">CSS float浮动的深入研究、详解及拓展(二)</a></li>
+<li><a href="http://www.iyunlu.com/view/css-xhtml/55.html" target="_blank" rel="noopener">那些年我们一起清除过的浮动</a></li>
+<li>《CSS权威指南》</li>
+</ul>
+</li>
+<li><p>列举不同的清除浮动的技巧，并指出它们各自适用的使用场景。</p>
+<ul>
+<li><p>直接把<figure class="highlight plain"><figcaption><span>style</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  - 优点：通俗易懂，容易掌握；</span><br><span class="line">  - 缺点：可以想象通过此方法，会添加多少无意义的空标签，有违结构与表现的分离，在后期维护中将是噩梦。</span><br><span class="line">+ 如下:</span><br></pre></td></tr></table></figure></p>
+<p>.clearfix{overflow:hidden; zoom:1;}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  此方法优点在于代码简洁，涵盖所有浏览器，可是对于`overflow:hidden;`要是里面的元素要是想来个`margin`负值定位或是负的绝对定位，岂不是直接被裁掉了，所以此方法是有不小的局限性的。</span><br><span class="line">  - 优点：不存在结构和语义化问题，代码量极少；</span><br><span class="line">  - 缺点：内容增多时候容易造成不会自动换行导致内容被隐藏掉，无法显示需要溢出的元素。</span><br><span class="line">+ 如下：</span><br></pre></td></tr></table></figure>
+<p>.fix{zoom:1;}<br>.fix:after{</p>
+<pre><code>display:block;
+content:&apos;.&apos;;
+clear:both;
+line-height:0;
+visibility:hidden;}
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    `line-height:0`写成`height:0`也是可以的。不会影响任何其他样式，通用性强，覆盖面广，我很推荐哦。</span><br><span class="line">  + 父元素也浮动：</span><br><span class="line">    - 优点：不存在结构和语义化问题，代码量极少</span><br><span class="line">    - 缺点：使得与父元素相邻的元素的布局会受到影响，不可能一直浮动到body，不推荐使用</span><br><span class="line"></span><br><span class="line">  总结：</span><br><span class="line">    + 其一，通过在浮动元素的末尾添加一个空元素，设置 `clear：both`属性，`after`伪元素其实也是通过 `content` 在元素的后面生成了内容为一个点的块级元素；</span><br><span class="line">    + 其二，通过设置父元素 `overflow` 或者`display：table` 属性来闭合浮动，这里的原理涉及到BFC，不再赘述。</span><br><span class="line"></span><br><span class="line">   同样请参考上一题给出的参考文章进行阅读加以理解。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">* Q: 解释下 CSS sprites，以及你要如何在页面或网站中使用它。</span><br><span class="line"></span><br><span class="line">  A: CSS Sprites就是把网页中一些小图片整合到一张图片文件中，再利用CSS的`background-image`，`background- repeat`，`background-position`的组合进行背景定位，`background-position`可以用数字能精确的定位出背景图片的位置。可以减少http请求。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">* Q: 你最喜欢的图片替换方法是什么，你如何选择使用。</span><br><span class="line"></span><br><span class="line">  A:</span><br><span class="line">    - 一些图标是使用before和after伪元素;</span><br><span class="line">    - 还有一些使用iconfont;</span><br><span class="line">    - 使用sprite图;</span><br><span class="line">    - 用背景图片代替图片。</span><br><span class="line"></span><br><span class="line">    举个栗子：</span><br></pre></td></tr></table></figure>
+<p>  </p><h1 class="nir">[content]</h1><p></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>.nir {<br>   height: 100px; /<em> height of replacement image </em>/<br>   padding: 0;<br>   margin: 0;<br>   overflow: hidden;<br>}</p>
+<p>.nir:before {</p>
+<pre><code>content: url(image.gif);
+display: block;
+</code></pre><p>  }</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    详细可阅读：[CSS image replacement with pseudo-elements](http://nicolasgallagher.com/css-image-replacement-with-pseudo-elements/)</span><br><span class="line"></span><br><span class="line">* Q：讨论CSS hacks，条件引用或者其他。</span><br><span class="line"></span><br><span class="line">  A: CSS主要由三种方法：</span><br><span class="line"></span><br><span class="line">    - 属性前缀法(即类内部Hack)：例如 IE6能识别下划线&quot;\_&quot;和星号&quot; \* &quot;，IE7能识别星号&quot; \* &quot;，但不能识别下划线&quot;\_&quot;，IE6~IE10都认识&quot;\9&quot;，但firefox前述三个都不能认识。</span><br><span class="line">    - 选择器前缀法(即选择器Hack)：例如 IE6能识别`*html .class&#123;&#125;`，IE7能识别`*+html .class&#123;&#125;`或者`*:first-child+html .class&#123;&#125;`。</span><br><span class="line">    - IE条件注释法(即HTML条件注释Hack)：针对所有IE(注：IE10+已经不再支持条件注释)： &lt;!--[if IE]&gt;IE浏览器显示的内容 &lt;![endif]--&gt;，针对IE6及以下版本： &lt;!--[if lt IE 6]&gt;只在IE6-显示的内容 &lt;![endif]--&gt;。这类Hack不仅对CSS生效，对写在判断语句里面的所有代码都会生效。</span><br></pre></td></tr></table></figure>
+<p>&lt;!DOCTYPE html&gt;<br><html><br><head><meta name="generator" content="Hexo 3.8.0"></head></html></p>
+<pre><code>&lt;title&gt;Css Hack&lt;/title&gt;
+&lt;style&gt;
+#test
+{
+    width:300px;
+    height:300px;
+
+    background-color:blue;      /*firefox*/
+    background-color:red\9;      /*all ie*/
+    background-color:yellow\0;    /*ie8*/
+    +background-color:pink;        /*ie7*/
+    _background-color:orange;       /*ie6*/
+}
+:root #test { background-color:purple\9; }  /*ie9*/
+@media all and (min-width:0px){ #test {background-color:black\0;} }  /*opera*/
+@media screen and (-webkit-min-device-pixel-ratio:0){ #test {background-color:gray;} }  /*chrome and safari*/
+&lt;/style&gt;
+</code></pre><p><br><body></body></p>
+<pre><code>&lt;div id=&quot;test&quot;&gt;test&lt;/div&gt;
+</code></pre><p><br></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  想要更多的了解CSS hack 方面的知识可以参考：</span><br><span class="line"></span><br><span class="line">    - [史上最全的CSS hack方式一览](http://blog.csdn.net/freshlover/article/details/12132801)</span><br><span class="line">    - [史上最全的css hack](http://www.cnblogs.com/wuqiang/archive/2011/08/23/2150240.html)</span><br><span class="line"></span><br><span class="line">* Q: 如何为有功能限制的浏览器提供网页？</span><br><span class="line">  * Q: 你会使用哪些技术和处理方法？</span><br><span class="line"></span><br><span class="line">   A: 功能限制的浏览器，比如 IE 低版本、手机浏览器、奇葩国内浏览器，会在很多功能上不符合 Web 标准，而应对的方式有这么几种：</span><br><span class="line"></span><br><span class="line">    - 只提供符合 Web 标准的页面；</span><br><span class="line">    - 提供另一个符合那些浏览器标准的页面(例如说移动端一套css,电脑端一套css);</span><br><span class="line">    - 兼容：这里有两种思路，一个是渐进增强，一个优雅降级。</span><br><span class="line">      渐进增强的思路就是提供一个可用的原型，后来再为高级浏览器提供优化。优雅降级的思路是根据高级浏览器提供一个版本，然后有功能限制的浏览器只需要一个刚好能用的版本。当然，工作中的标准都是尽量满足设计，如果不能满足的话就尽量贴近，不得已（性能之类的问题）才会砍掉某个浏览器版本上的需求。</span><br><span class="line"></span><br><span class="line">    相关技术:</span><br><span class="line">    - Media Query</span><br><span class="line">    - CSS hack</span><br><span class="line">    - 条件判断 `&lt;!--[if !IE]&gt;&lt;!--&gt;除IE外都可识别 &lt;!--&lt;![endif]--&gt;`</span><br><span class="line"></span><br><span class="line">* Q： 有哪些的隐藏内容的方法（如果同时还要保证屏幕阅读器可用呢？）</span><br><span class="line"></span><br><span class="line">  A: `display:none`看不见也摸不着，屏幕阅读器更会忽略其内容；而`visibility:hidden`虽然看得见但是摸不着，占据了一定的物理空间，屏幕阅读器也会忽略。如果想要在读屏设备中让这些内容可见。解决方案的基本思路都是将这些内容放到屏幕、视线意外的地方，或者就是将大小设置成 0。比如 `text-indent: -9999em;`、`overflow: hidden;`、`height: 0`。</span><br></pre></td></tr></table></figure>
+<p>  .texthidden {</p>
+<pre><code>display:block;/*统一转化为块级元素*/
+overflow: hidden;
+width: 0;
+height: 0;
+</code></pre><p>   }</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">更详细的方法可以参考这篇文章[HIDING CONTENT FOR ACCESSIBILITY](http://snook.ca/archives/html_and_css/hiding-content-for-accessibility)</span><br><span class="line"></span><br><span class="line">不过既然这是了读屏而优化的，那么可以用 media query 来完成，media speech 用于语音输出的读屏设备。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>@media speech {</p>
+<pre><code>/* media-specify rules */
+</code></pre><p>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  以上转自[Witcher42](http://witcher42.github.io/2014/06/06/what-are-the-different-ways-to-visually-hide-content-and-make-it-available-only-for-screen-readers/)给出的答案。</span><br><span class="line"></span><br><span class="line">* Q：你用过栅格系统吗？如果使用过，你最喜欢哪种？</span><br><span class="line"></span><br><span class="line">  A：使用过bootstarp。易于上手，学习成本低，还能做出比较大方美观的页面。</span><br><span class="line"></span><br><span class="line">  可阅读[栅格系统延续美学](http://mux.baidu.com/?p=1550)。</span><br><span class="line"></span><br><span class="line">* Q: 你用过媒体查询，或针对移动端的布局/CSS 吗？</span><br><span class="line"></span><br><span class="line">  A:</span><br></pre></td></tr></table></figure>
+<p>  @media screen and (min-width:600px) {</p>
+<pre><code>nav {
+  float: left;
+  width: 25%;
+}
+section {
+  margin-left: 25%;
+}
+</code></pre><p>  }<br>  @media screen and (max-width:599px) {</p>
+<pre><code>nav li {
+  display: inline;
+}
+</code></pre><p>  }</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">    可参考：</span><br><span class="line">    - [CSS媒体查询](https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Media_queries)</span><br><span class="line">    - [使用 CSS 媒体查询创建响应式网站](http://www.ibm.com/developerworks/cn/web/wa-cssqueries/)</span><br><span class="line">* Q:你熟悉 SVG 样式的书写吗？</span><br><span class="line"></span><br><span class="line">  A:</span><br></pre></td></tr></table></figure>
+<p><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><br/> <circle cx="40" cy="40" r="24" style="stroke:#006600; fill:#00cc00"/><br/> <text x="250" y="150" font-family="Verdana" font-size="10px" fill="blue">Hello, out there</text><br/> <defs><style type="text/css"> &lt;![CDATA[.sample{stroke:blue;fill:#0080FF;opacity:1;}]]&gt;</style></defs><br/> <use xlink:href="#sample1" class="sample"/><br/> </svg><br><code>`</code></p>
+<p>教程参考: <a href="https://developer.mozilla.org/zh-CN/docs/Web/SVG/Tutorial" target="_blank" rel="noopener">SVG教程</a></p>
+</li>
+<li><p>Q: 如何优化网页的打印样式？</p>
+<p>A:</p>
+<p><code>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; media=&quot;screen&quot; href=&quot;xxx.css&quot; /&gt;</code></p>
+<p>其中media指定的属性就是设备，显示器上就是screen，打印机则是print，电视是tv，投影仪是projection。</p>
+<p><code>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; media=&quot;print&quot; href=&quot;yyy.css&quot; /&gt;</code></p>
+<p>但打印样式表也应有些注意事项：</p>
+<p>1 打印样式表中最好不要用背景图片，因为打印机不能打印CSS中的背景。如要显示图片，请使用html插入到页面中。<br>2 最好不要使用像素作为单位，因为打印样式表要打印出来的会是实物，所以建议使用pt和cm。<br>3 隐藏掉不必要的内容。（<code>@print div{display:none;}</code>）<br>4 打印样式表中最好少用浮动属性，因为它们会消失。<br>如果想要知道打印样式表的效果如何，直接在浏览器上选择打印预览就可以了。</p>
+</li>
+<li><p>Q: 书写高效 CSS 时会有哪些问题需要考虑？</p>
+<p>A:</p>
+<ul>
+<li>样式是：从右向左的解析一个选择器</li>
+<li>ID最快，Universal最慢 有四种类型的key selector，解析速度由快到慢依次是：ID、class、tag和universal</li>
+<li>不要tag-qualify （永远不要这样做 ul#main-navigation { } ID已经是唯一的，不需要Tag来标识，这样做会让选择器变慢。）</li>
+<li>后代选择器最糟糕（换句话说，下面这个选择器是很低效的： html body ul li a { }）</li>
+<li>想清楚你为什么这样写</li>
+<li>CSS3的效率问题（CSS3选择器（比如 :nth-child）能够漂亮的定位我们想要的元素，又能保证我们的CSS整洁易读。但是这些神奇的选择器会浪费很多的浏览器资源。）</li>
+<li>我们知道#ID速度是最快的，那么我们都用ID，是不是很快。但是我们不应该为了效率而牺牲可读性和可维护性`</li>
+</ul>
+<p>可参考： <a href="http://blog.jobbole.com/55067/" target="_blank" rel="noopener">http://blog.jobbole.com/55067/</a></p>
+<p>等我重写这道题答案。=。=</p>
+</li>
+<li><p>使用 CSS 预处理器的优缺点有哪些？(SASS，Compass，Stylus，LESS)</p>
+<ul>
+<li>描述下你曾经使用过的 CSS 预处理的优缺点。</li>
+</ul>
+</li>
+<li><p>如果设计中使用了非标准的字体，你该如何去实现？</p>
+<ul>
+<li>Webfonts (字体服务例如：Google Webfonts，Typekit 等等。)</li>
+</ul>
+</li>
+<li><p>解释下浏览器是如何判断元素是否匹配某个 CSS 选择器？</p>
+</li>
+<li><p>解释一下你对盒模型的理解，以及如何在 CSS 中告诉浏览器使用不同的盒模型来渲染你的布局。</p>
+</li>
+<li><p>请解释一下 <code>* { box-sizing: border-box; }</code> 的作用, 并且说明使用它有什么好处？</p>
+</li>
+<li><p>请罗列出你所知道的 display 属性的全部值</p>
+</li>
+<li><p>请解释一下 inline 和 inline-block 的区别？</p>
+</li>
+<li><p>请解释一下 relative、fixed、absolute 和 static 元素的区别</p>
+</li>
+<li><p>你目前在使用哪一套CSS框架，或者在产品线上使用过哪一套？(Bootstrap, PureCSS, Foundation 等等)</p>
+<ul>
+<li>如果有，请问是哪一套？如果可以，你如何改善CSS框架？</li>
+</ul>
+</li>
+<li><p>请问你有使用过 CSS Flexbox 或者 Grid specs 吗？</p>
+<ul>
+<li>如果有，请问在性能和效率的方面你是怎么看的？</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS/" rel="tag"># CSS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/10/css/" rel="next" title="CSS">
+                <i class="fa fa-chevron-left"></i> CSS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/26/http/" rel="prev" title="网络相关问题">
+                网络相关问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="轻触流年"/>
+            
+              <p class="site-author-name" itemprop="name">轻触流年</p>
+              <p class="site-description motion-element" itemprop="description">吾心所向，前端之巅。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/xwlaix" title="GitHub &rarr; https://github.com/xwlaix" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:way215870604@gmail.com" title="E-Mail &rarr; mailto:way215870604@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前端面试CSS-相关问题"><span class="nav-number">1.</span> <span class="nav-text">前端面试CSS 相关问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">[content]</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">轻触流年</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
