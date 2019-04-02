@@ -96,27 +96,25 @@
 
 
 
-  <meta name="description" content="一、标题生成语法：    #的数量代表级别。注：    标准语法一般在#后跟个空格在写文字。 二、字体 加粗：用两个*包裹文字。 斜体：用一个*包裹文字。 斜体加粗：用三个*包裹文字。 删除线 ：用两个~~包裹文字。  三、引用语法：在引用的文字前加&amp;gt;即可实例：  这是引用的内容。  四、分割线语法：三个或者三个以上的-或者*都可以。实例：1234-------******* 效果如下：">
-<meta name="keywords" content="学习">
+  <meta name="description" content="async函数 含义 基本用法 语法 async函数的实现原理 与其他异步处理方法得比较 实例：按顺序完成异步操作 异步遍历器   含义asynsc 函数就是Generator函数的语法糖。  内置执行器 更好的语义 更广的适应性 返回值是Promise  基本用法123456789101112131415161718192021222324252627// 函数声明async function">
+<meta name="keywords" content="ES6">
 <meta property="og:type" content="article">
-<meta property="og:title" content="熟悉记录markdown的基本语法">
-<meta property="og:url" content="http://yoursite.com/2018/07/04/md/index.html">
+<meta property="og:title" content="async函数">
+<meta property="og:url" content="http://yoursite.com/2019/04/02/async函数/index.html">
 <meta property="og:site_name" content="轻触流年的博客">
-<meta property="og:description" content="一、标题生成语法：    #的数量代表级别。注：    标准语法一般在#后跟个空格在写文字。 二、字体 加粗：用两个*包裹文字。 斜体：用一个*包裹文字。 斜体加粗：用三个*包裹文字。 删除线 ：用两个~~包裹文字。  三、引用语法：在引用的文字前加&amp;gt;即可实例：  这是引用的内容。  四、分割线语法：三个或者三个以上的-或者*都可以。实例：1234-------******* 效果如下：">
+<meta property="og:description" content="async函数 含义 基本用法 语法 async函数的实现原理 与其他异步处理方法得比较 实例：按顺序完成异步操作 异步遍历器   含义asynsc 函数就是Generator函数的语法糖。  内置执行器 更好的语义 更广的适应性 返回值是Promise  基本用法123456789101112131415161718192021222324252627// 函数声明async function">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/images/avatar.jpg">
-<meta property="og:updated_time" content="2019-03-11T01:50:26.876Z">
+<meta property="og:updated_time" content="2019-04-02T09:52:26.781Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="熟悉记录markdown的基本语法">
-<meta name="twitter:description" content="一、标题生成语法：    #的数量代表级别。注：    标准语法一般在#后跟个空格在写文字。 二、字体 加粗：用两个*包裹文字。 斜体：用一个*包裹文字。 斜体加粗：用三个*包裹文字。 删除线 ：用两个~~包裹文字。  三、引用语法：在引用的文字前加&amp;gt;即可实例：  这是引用的内容。  四、分割线语法：三个或者三个以上的-或者*都可以。实例：1234-------******* 效果如下：">
-<meta name="twitter:image" content="http://yoursite.com/images/avatar.jpg">
+<meta name="twitter:title" content="async函数">
+<meta name="twitter:description" content="async函数 含义 基本用法 语法 async函数的实现原理 与其他异步处理方法得比较 实例：按顺序完成异步操作 异步遍历器   含义asynsc 函数就是Generator函数的语法糖。  内置执行器 更好的语义 更广的适应性 返回值是Promise  基本用法123456789101112131415161718192021222324252627// 函数声明async function">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/04/md/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/02/async函数/">
 
 
 
@@ -126,7 +124,7 @@
   };
 </script>
 
-  <title>熟悉记录markdown的基本语法 | 轻触流年的博客</title>
+  <title>async函数 | 轻触流年的博客</title>
   
 
 
@@ -346,7 +344,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/04/md/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/async函数/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="轻触流年">
@@ -363,7 +361,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">熟悉记录markdown的基本语法
+          <h1 class="post-title" itemprop="name headline">async函数
 
               
             
@@ -389,24 +387,12 @@
                 
               
 
-              <time title="创建时间：2018-07-04 16:15:10" itemprop="dateCreated datePublished" datetime="2018-07-04T16:15:10+08:00">2018-07-04</time>
+              <time title="创建时间：2019-04-02 16:07:12 / 修改时间：17:52:26" itemprop="dateCreated datePublished" datetime="2019-04-02T16:07:12+08:00">2019-04-02</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-11 09:50:26" itemprop="dateModified" datetime="2019-03-11T09:50:26+08:00">2019-03-11</time>
               
             
           </span>
@@ -423,7 +409,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/记录/" itemprop="url" rel="index"><span itemprop="name">记录</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/async/" itemprop="url" rel="index"><span itemprop="name">async</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/async/awit/" itemprop="url" rel="index"><span itemprop="name">awit</span></a></span>
 
                 
                 
@@ -458,65 +451,44 @@
       
 
       
-        <h1 id="一、标题生成"><a href="#一、标题生成" class="headerlink" title="一、标题生成"></a>一、标题生成</h1><p>语法：<br>    <code>#</code>的数量代表级别。<br>注：<br>    标准语法一般在<code>#</code>后跟个空格在写文字。</p>
-<h1 id="二、字体"><a href="#二、字体" class="headerlink" title="二、字体"></a>二、字体</h1><ol>
-<li><strong>加粗</strong>：用两个<code>*</code>包裹文字。</li>
-<li><em>斜体</em>：用一个<code>*</code>包裹文字。</li>
-<li><strong><em>斜体加粗</em></strong>：用三个<code>*</code>包裹文字。</li>
-<li><del>删除线</del> ：用两个<code>~~</code>包裹文字。</li>
+        <h1 id="async函数"><a href="#async函数" class="headerlink" title="async函数"></a>async函数</h1><ol>
+<li>含义</li>
+<li>基本用法</li>
+<li>语法</li>
+<li>async函数的实现原理</li>
+<li>与其他异步处理方法得比较</li>
+<li>实例：按顺序完成异步操作</li>
+<li>异步遍历器</li>
 </ol>
-<h1 id="三、引用"><a href="#三、引用" class="headerlink" title="三、引用"></a>三、引用</h1><p>语法：<br>在引用的文字前加<code>&gt;</code>即可<br>实例：</p>
-<blockquote>
-<p>这是引用的内容。</p>
-</blockquote>
-<h1 id="四、分割线"><a href="#四、分割线" class="headerlink" title="四、分割线"></a>四、分割线</h1><p>语法：<br>三个或者三个以上的<code>-</code>或者<code>*</code>都可以。<br>实例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">----</span><br><span class="line">***</span><br><span class="line">****</span><br></pre></td></tr></table></figure></p>
-<p>效果如下：</p>
 <hr>
-<h1 id="五、图片"><a href="#五、图片" class="headerlink" title="五、图片"></a>五、图片</h1><p>语法：<br><code>![图片alt](图片地址&#39;&#39;图片title&#39;&#39;)</code><br>实例：<br><code>![test](/images/avatar.jpg &#39;avatar&#39;)</code><br>效果如下：<br><img src="/images/avatar.jpg" alt="test" title="avatar"></p>
-<h1 id="六、超链接"><a href="#六、超链接" class="headerlink" title="六、超链接"></a>六、超链接</h1><p>语法：<br><code>[超链接名](超链接地址 &#39;超链接title&#39;)</code><br>实例：<br><code>[百度](http://baidu.com)</code><br>效果如下：<br><a href="http://baidu.com" target="_blank" rel="noopener">百度</a></p>
-<h1 id="七、列表"><a href="#七、列表" class="headerlink" title="七、列表"></a>七、列表</h1><p>语法：无序列表用<code>- + *</code>任何一种都可以。</p>
-<p>注意：<code>- + *</code>跟内容之间都要有一个空格。</p>
-<ul>
-<li>列表一</li>
-</ul>
-<ul>
-<li>列表二</li>
-</ul>
-<ul>
-<li>列表三</li>
-</ul>
-<p>有序列表：数字加点。注意：序号跟内容之间要有空格。</p>
+<h2 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h2><p>asynsc 函数就是Generator函数的语法糖。</p>
 <ol>
-<li>有序一</li>
-<li>有序二</li>
-<li>有序三</li>
+<li>内置执行器</li>
+<li>更好的语义</li>
+<li>更广的适应性</li>
+<li>返回值是Promise</li>
 </ol>
-<p>列表嵌套：上一级和下一级之间敲三个空格即可。</p>
-<h1 id="八、表格"><a href="#八、表格" class="headerlink" title="八、表格"></a>八、表格</h1><p>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">表头|表头|表头</span><br><span class="line">---|:--:|---:</span><br><span class="line">内容|内容|内容</span><br><span class="line">内容|内容|内容</span><br><span class="line"></span><br><span class="line">第二行分割表头和内容。</span><br><span class="line">- 有一个就行，为了对齐，多加了几个</span><br><span class="line">文字默认居左</span><br><span class="line">-两边加：表示文字居中</span><br><span class="line">-右边加：表示文字居右</span><br><span class="line">注：原生的语法两边都要用 | 包起来。此处省略。</span><br></pre></td></tr></table></figure></p>
-<p>效果如下：</p>
-<table>
-<thead>
-<tr>
-<th>表头</th>
-<th style="text-align:center">表头</th>
-<th style="text-align:right">表头</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>内容</td>
-<td style="text-align:center">内容</td>
-<td style="text-align:right">内容</td>
-</tr>
-<tr>
-<td>内容</td>
-<td style="text-align:center">内容</td>
-<td style="text-align:right">内容</td>
-</tr>
-</tbody>
-</table>
-<h1 id="九、代码"><a href="#九、代码" class="headerlink" title="九、代码"></a>九、代码</h1><p>单行代码 代码内容两边由一个反引号包包裹。<br>多行代码 代码内容两边由三个反引号包包裹。<br>单行<br><code>hello world</code></p>
-<p>多行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function fun()&#123;</span><br><span class="line">	alert(1)</span><br><span class="line">&#125;</span><br><span class="line">fun()</span><br></pre></td></tr></table></figure></p>
+<h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">// 函数声明</span><br><span class="line">async function foo() &#123;&#125;</span><br><span class="line"></span><br><span class="line">// 函数表达式</span><br><span class="line">const foo = async function () &#123;&#125;;</span><br><span class="line"></span><br><span class="line">// 对象的方法</span><br><span class="line">let obj = &#123; async foo() &#123;&#125; &#125;;</span><br><span class="line">obj.foo().then(...)</span><br><span class="line"></span><br><span class="line">// Class 的方法</span><br><span class="line">class Storage &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    this.cachePromise = caches.open(&apos;avatars&apos;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  async getAvatar(name) &#123;</span><br><span class="line">    const cache = await this.cachePromise;</span><br><span class="line">    return cache.match(`/avatars/$&#123;name&#125;.jpg`);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const storage = new Storage();</span><br><span class="line">storage.getAvatar(&apos;jake&apos;).then(…);</span><br><span class="line"></span><br><span class="line">// 箭头函数</span><br><span class="line">const foo = async () =&gt; &#123;&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><ol>
+<li>返回Promise对象（return返回的值会变为then方法回调函数的参数。内部抛出的错误，会被catch方法回调函数接收到）</li>
+<li>Promise对象的状态变化</li>
+<li>await命令 正常是返回一个Promise对象，返回该对象的结果，如果不是就返回对应的值。另外一种情况，如果后面是一个thenable对象（即定义then方法的对象）。await后面的Promise对象再跟一个catch方法，处理前面可能出现的错误。</li>
+<li>错误处理，防止出错的方法，是将其放在try…catch代码块之中。</li>
+<li>使用注意点，注意互不依赖的操作，可以让其先触发再去操作。如果需要多个请求并发执行，可以使用Promise.all方法。</li>
+</ol>
+<h2 id="async函数的实现原理"><a href="#async函数的实现原理" class="headerlink" title="async函数的实现原理"></a>async函数的实现原理</h2><p>其原理就是将Generator函数的自动执行器，包装在一个函数里。<br>自动执行函数spawn的实现。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">async function fn(args) &#123;</span><br><span class="line">  // ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 等同于</span><br><span class="line"></span><br><span class="line">function fn(args) &#123;</span><br><span class="line">  return spawn(function* () &#123;</span><br><span class="line">    // ...</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">function spawn(genF) &#123;</span><br><span class="line">  return new Promise(function(resolve, reject) &#123;</span><br><span class="line">    const gen = genF();</span><br><span class="line">    function step(nextF) &#123;</span><br><span class="line">      let next;</span><br><span class="line">      try &#123;</span><br><span class="line">        next = nextF();</span><br><span class="line">      &#125; catch(e) &#123;</span><br><span class="line">        return reject(e);</span><br><span class="line">      &#125;</span><br><span class="line">      if(next.done) &#123;</span><br><span class="line">        return resolve(next.value);</span><br><span class="line">      &#125;</span><br><span class="line">      Promise.resolve(next.value).then(function(v) &#123;</span><br><span class="line">        step(function() &#123; return gen.next(v); &#125;);</span><br><span class="line">      &#125;, function(e) &#123;</span><br><span class="line">        step(function() &#123; return gen.throw(e); &#125;);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    step(function() &#123; return gen.next(undefined); &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="与其他异步处理方法的比较"><a href="#与其他异步处理方法的比较" class="headerlink" title="与其他异步处理方法的比较"></a>与其他异步处理方法的比较</h2><ol>
+<li>Promise 的写法比回调函数的写法大大改进，但是一眼看上去，代码完全都是 Promise 的 API（then、catch等等），操作本身的语义反而不容易看出来。</li>
+<li>Generator 函数遍历了每个动画，语义比 Promise 写法更清晰，用户定义的操作全部都出现在spawn函数的内部。</li>
+<li>Async 函数的实现最简洁，最符合语义，几乎没有语义不相关的代码。它将 Generator 写法中的自动执行器，改在语言层面提供，不暴露给用户，因此代码量最少。</li>
+</ol>
+<h2 id="实例：按顺序完成异步操作"><a href="#实例：按顺序完成异步操作" class="headerlink" title="实例：按顺序完成异步操作"></a>实例：按顺序完成异步操作</h2><h2 id="异步遍历器-next方法必须是同步的，只要调用就必须立刻返回值。"><a href="#异步遍历器-next方法必须是同步的，只要调用就必须立刻返回值。" class="headerlink" title="异步遍历器 next方法必须是同步的，只要调用就必须立刻返回值。"></a>异步遍历器 next方法必须是同步的，只要调用就必须立刻返回值。</h2><ol>
+<li>异步遍历的接口</li>
+<li>for await…of</li>
+<li>异步Generator函数</li>
+<li>yield* 语句</li>
+<li></li>
+</ol>
 
       
     </div>
@@ -540,7 +512,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/学习/" rel="tag"># 学习</a>
+            <a href="/tags/ES6/" rel="tag"># ES6</a>
           
         </div>
       
@@ -553,15 +525,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/03/15/最近又开始迷茫了。。/" rel="next" title="最近又开始迷茫了。。">
+                <i class="fa fa-chevron-left"></i> 最近又开始迷茫了。。
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/29/html2/" rel="prev" title="HTML相关问题">
-                HTML相关问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -775,7 +747,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、标题生成"><span class="nav-number">1.</span> <span class="nav-text">一、标题生成</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、字体"><span class="nav-number">2.</span> <span class="nav-text">二、字体</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、引用"><span class="nav-number">3.</span> <span class="nav-text">三、引用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、分割线"><span class="nav-number">4.</span> <span class="nav-text">四、分割线</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、图片"><span class="nav-number">5.</span> <span class="nav-text">五、图片</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、超链接"><span class="nav-number">6.</span> <span class="nav-text">六、超链接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#七、列表"><span class="nav-number">7.</span> <span class="nav-text">七、列表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#八、表格"><span class="nav-number">8.</span> <span class="nav-text">八、表格</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#九、代码"><span class="nav-number">9.</span> <span class="nav-text">九、代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#async函数"><span class="nav-number">1.</span> <span class="nav-text">async函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#含义"><span class="nav-number">1.1.</span> <span class="nav-text">含义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本用法"><span class="nav-number">1.2.</span> <span class="nav-text">基本用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">1.3.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#async函数的实现原理"><span class="nav-number">1.4.</span> <span class="nav-text">async函数的实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#与其他异步处理方法的比较"><span class="nav-number">1.5.</span> <span class="nav-text">与其他异步处理方法的比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例：按顺序完成异步操作"><span class="nav-number">1.6.</span> <span class="nav-text">实例：按顺序完成异步操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步遍历器-next方法必须是同步的，只要调用就必须立刻返回值。"><span class="nav-number">1.7.</span> <span class="nav-text">异步遍历器 next方法必须是同步的，只要调用就必须立刻返回值。</span></a></li></ol></li></ol></div>
             
 
           </div>
