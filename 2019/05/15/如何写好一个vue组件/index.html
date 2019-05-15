@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="一个适用性良好的组件，一种是可配置项很多，另外一种就是容易覆写，从而扩展功能。  Vue组件的api来自三部分–prop、事件和插槽：  prop允许外部环境传递数据给组件 event允许从组件内触发外部环境的副作用 slot允许外部环境将额外的内容组合在组建中prop一个参数 如果该组件只有一个参数的时候，我们可以用v-model将该参数传入组件，将减少记忆成本（毕竟vue官方的语法糖，不用白">
+<meta name="keywords" content="学习 vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何写好一个vue组件">
+<meta property="og:url" content="http://yoursite.com/2019/05/15/如何写好一个vue组件/index.html">
+<meta property="og:site_name" content="轻触流年的博客">
+<meta property="og:description" content="一个适用性良好的组件，一种是可配置项很多，另外一种就是容易覆写，从而扩展功能。  Vue组件的api来自三部分–prop、事件和插槽：  prop允许外部环境传递数据给组件 event允许从组件内触发外部环境的副作用 slot允许外部环境将额外的内容组合在组建中prop一个参数 如果该组件只有一个参数的时候，我们可以用v-model将该参数传入组件，将减少记忆成本（毕竟vue官方的语法糖，不用白">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-15T08:38:34.205Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何写好一个vue组件">
+<meta name="twitter:description" content="一个适用性良好的组件，一种是可配置项很多，另外一种就是容易覆写，从而扩展功能。  Vue组件的api来自三部分–prop、事件和插槽：  prop允许外部环境传递数据给组件 event允许从组件内触发外部环境的副作用 slot允许外部环境将额外的内容组合在组建中prop一个参数 如果该组件只有一个参数的时候，我们可以用v-model将该参数传入组件，将减少记忆成本（毕竟vue官方的语法糖，不用白">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/15/如何写好一个vue组件/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>如何写好一个vue组件 | 轻触流年的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">轻触流年的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">吾心所向，前端之巅。</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/15/如何写好一个vue组件/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="轻触流年">
+      <meta itemprop="description" content="吾心所向，前端之巅。">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="轻触流年的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">如何写好一个vue组件
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-15 09:35:17 / 修改时间：16:38:34" itemprop="dateCreated datePublished" datetime="2019-05-15T09:35:17+08:00">2019-05-15</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/记录/" itemprop="url" rel="index"><span itemprop="name">记录</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>一个适用性良好的组件，一种是可配置项很多，另外一种就是容易覆写，从而扩展功能。</p>
+</blockquote>
+<p>Vue组件的api来自三部分–prop、事件和插槽：</p>
+<ul>
+<li>prop允许外部环境传递数据给组件</li>
+<li>event允许从组件内触发外部环境的副作用</li>
+<li>slot允许外部环境将额外的内容组合在组建中<h1 id="prop"><a href="#prop" class="headerlink" title="prop"></a>prop</h1><h2 id="一个参数"><a href="#一个参数" class="headerlink" title="一个参数"></a>一个参数</h2></li>
+<li>如果该组件只有一个参数的时候，我们可以用<code>v-model</code>将该参数传入组件，将减少记忆成本（毕竟vue官方的语法糖，不用白不用）<br><code>&lt;my-component v-model=&quot;text&quot; /&gt;</code></li>
+<li>如果该组件可以独立运行，不依赖父组件时，还是给这个值取一个名字<br><code>&lt;component-no-sync :children=&quot;foo&quot; /&gt;</code><h2 id="很多值需要传入子组件"><a href="#很多值需要传入子组件" class="headerlink" title="很多值需要传入子组件"></a>很多值需要传入子组件</h2>当一个组件有很多配置项，且当没有传入配置项取用组件内部默认项的时候，我们原先的父组件写法：<br><code>&lt;child-component :prop1=&quot;var1&quot; :prop2=&quot;var2&quot; :prop3=&quot;var3&quot; ... /&gt;</code><br>其实可以在父组件上直接使用<code>v-bind={子组件props集合}</code><br>但是为了方便覆写子组件的内部配置项，不妨使用一个对象将配置收集到一起，但是这种做法不能利用props验证对象里面的每一个值的类型<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;child-component v-model=&quot;text&quot; :setting=&quot;&#123;color:&apos;red&apos;&#125;&quot; /&gt;</span><br><span class="line">// 子组件内部读取配置，通过扩展运算符替换掉默认配置</span><br><span class="line">const setting = &#123;</span><br><span class="line">  ...defaultSetting,</span><br><span class="line">  ...this.setting</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="computed属性"><a href="#computed属性" class="headerlink" title="computed属性"></a>computed属性</h2><p>vue的computed属性默认是只读的，你可以提供一个setter。它可以优化我们写组件的逻辑，使用于父组件处理的值和子组件处理的值是同一个的情况<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;el-select v-model=&quot;email&quot;&gt;</span><br><span class="line">    &lt;el-option</span><br><span class="line">      v-for=&quot;item in adminUserOptions&quot; </span><br><span class="line">      :key=&quot;item.email&quot;</span><br><span class="line">      :label=&quot;item.email&quot;</span><br><span class="line">      :value=&quot;item.email&quot;</span><br><span class="line">    /&gt;</span><br><span class="line">  &lt;/el-select&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">export default&#123;</span><br><span class="line">  props:&#123;</span><br><span class="line">    value:&#123;&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  computed:&#123;</span><br><span class="line">    email:&#123;</span><br><span class="line">      get()&#123;</span><br><span class="line">        return this.value</span><br><span class="line">      &#125;,</span><br><span class="line">      set(val)&#123;</span><br><span class="line">        this.$emit(&apos;input&apos;,val)</span><br><span class="line">        this.$emit(&apos;change&apos;,val)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="灵活的prop"><a href="#灵活的prop" class="headerlink" title="灵活的prop"></a>灵活的prop</h2><p>我们常看到一些优秀的组件库，传入的值既可以是一个String/Number，也可以是一个函数。<br>比如<code>ElementUI</code>的<code>Table</code>组件，当你想要显示树形数据的时候，必须传入<code>row-key</code>。看它的介绍就知道有多灵活：<code>row-key</code>的作用：行数据的<code>key</code>，用来优化<code>Table</code>的渲染；在使用<code>reserve-selection</code>功能与显示树形数据时，该属性是必填的。类型为String时，支持多层访问：<code>user.info.id</code>，但不支持<code>user.info[0].id</code>，这种情况请使用<code>Function</code>处理rowKey生成RowIdentity<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//https://github.com/ElemeFE/element/blob/dev/packages/table/src/util.js</span><br><span class="line">export const getRowIdentity = (row, rowKey) =&gt; &#123;</span><br><span class="line">  if (!row) throw new Error(&apos;row is required when get row identity&apos;)</span><br><span class="line">  // 行数据的key</span><br><span class="line">  if (typeof rowKey === &apos;string&apos;) &#123;</span><br><span class="line">    if (rowKey.indexOf(&apos;.&apos;) &lt; 0) &#123;</span><br><span class="line">      return row[rowKey]</span><br><span class="line">    &#125;</span><br><span class="line">    // 支持多层访问：user.info.id</span><br><span class="line">    let key = rowKey.split(&apos;.&apos;)</span><br><span class="line">    let current = row</span><br><span class="line">    for (let i = 0; i &lt; key.length; i++) &#123;</span><br><span class="line">      current = current[key[i]]</span><br><span class="line">    &#125;</span><br><span class="line">    return current</span><br><span class="line">    // 通过函数自定义</span><br><span class="line">    // 我处理过父和子id可能相同的情况，只好通过Function自定义</span><br><span class="line">    // 不可以通过时间或者随机字符串生成ID</span><br><span class="line">  &#125; else if (typeof rowKey === &apos;function&apos;) &#123;</span><br><span class="line">    return rowKey.call(null, row)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>由于业务场景多变，组件的设计者很难考虑完全，不妨设计灵活的prop，由开发者自行定义</p>
+<h1 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h1><h2 id="emit-on"><a href="#emit-on" class="headerlink" title="emit/on"></a>emit/on</h2><p>vm.$on(event,callback)</p>
+<blockquote>
+<p>监听当前实例上的自定义事件。事件可以由vm.$emit触发。回调函数会接收所有传入事件触发函数的额外参数。</p>
+</blockquote>
+<p>vm.$emit(event,[…args])</p>
+<blockquote>
+<p>触发当前实例上的事件。附加参数都会传给监听器回调。<br>父组件使用监听事件由vm.$emit触发，通过监听事件来接受从子组件传来的数据，通知父组件数据改变了。<br>子组件通过$emit来触发事件，将参数传递出去。</p>
+</blockquote>
+<h3 id="v-model"><a href="#v-model" class="headerlink" title="v-model"></a>v-model</h3><blockquote>
+<p>看一下下面的代码示例，就能懂这句话了。v-model会忽略所有表单元素的value，checked、selected特性的初始值而总是将vue实例的数据作为数据来源。你应该通过JavaScript在组件的data选项中声明初始值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;input v-model=&quot;searchText&quot; /&gt;</span><br><span class="line">&lt;input v-bind:value=&quot;searchText&quot; v-on:input=&quot;searchText = $event.target.value&quot; /&gt;</span><br><span class="line">// 当把v-model用在组件上</span><br><span class="line">&lt;custom-input v-bind:value=&quot;searchText&quot; v-on:input=&quot;searchText=$event&quot;&gt;&lt;/custom-input&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>为了让它正常工作，这个组件内的<input>必须：将其value特性绑定到一个名叫value的prop上在其input事件被触发时，将新的值通过自定义的input事件抛出，即<code>this.$emit(&#39;input&#39;,changeValue)</code></p>
+<h3 id="sync（双向绑定语法糖）"><a href="#sync（双向绑定语法糖）" class="headerlink" title="sync（双向绑定语法糖）"></a>sync（双向绑定语法糖）</h3><blockquote>
+<p>vue真的是方便了开发者很多，站在开发者的角度考虑，很大的提升开发效率<br>以update:myPropName的模式触发事件取代双向绑定<code>this.$emit(&#39;update:title&#39;,newTitle)</code></p>
+</blockquote>
+<h2 id="Function通过prop传入"><a href="#Function通过prop传入" class="headerlink" title="Function通过prop传入"></a>Function通过prop传入</h2><p>为什么不能把子组件里面的事件emit出来，通过父组件处理？然后在传入一个控制子组件的prop属性。<br>这样子操作影响子组件内部的状态却要依赖父组件传值。<br>该组件内部的状态 就应该处于组件内。<br>但是可以通过传入function（一个钩子），参与组件状态变更的行为。比如很好用的拖拽库，vue.draggable控制元素是否被拖动的行为。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习-vue/" rel="tag"># 学习 vue</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/16/vue细节/" rel="next" title="vue细节">
+                <i class="fa fa-chevron-left"></i> vue细节
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="轻触流年">
+            
+              <p class="site-author-name" itemprop="name">轻触流年</p>
+              <p class="site-description motion-element" itemprop="description">吾心所向，前端之巅。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/xwlaix" title="GitHub &rarr; https://github.com/xwlaix" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:way215870604@gmail.com" title="E-Mail &rarr; mailto:way215870604@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#prop"><span class="nav-number">1.</span> <span class="nav-text">prop</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一个参数"><span class="nav-number">1.1.</span> <span class="nav-text">一个参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#很多值需要传入子组件"><span class="nav-number">1.2.</span> <span class="nav-text">很多值需要传入子组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#computed属性"><span class="nav-number">1.3.</span> <span class="nav-text">computed属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#灵活的prop"><span class="nav-number">1.4.</span> <span class="nav-text">灵活的prop</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事件"><span class="nav-number">2.</span> <span class="nav-text">事件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#emit-on"><span class="nav-number">2.1.</span> <span class="nav-text">emit/on</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#v-model"><span class="nav-number">2.1.1.</span> <span class="nav-text">v-model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sync（双向绑定语法糖）"><span class="nav-number">2.1.2.</span> <span class="nav-text">sync（双向绑定语法糖）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Function通过prop传入"><span class="nav-number">2.2.</span> <span class="nav-text">Function通过prop传入</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">轻触流年</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
